@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relax with Joy</title>
+
+    <!-- Meta Pixel: ab yahan se load nahi hota. Neeche ANTI-FAKE-CLICK script ke andar
+         sirf verified human visitor ke liye load hota hai. (noscript pixel hata diya, kyunki bots use fire karte the) -->
+
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Helvetica Neue', Arial, sans-serif; }
+        body { background-color: #0b0b0b; color: #ffffff; line-height: 1.6; padding-bottom: 80px; }
+
+        .video-bg-container { position: relative; width: 100%; min-height: 100vh; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .bg-video { position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%; width: auto; height: auto; z-index: -2; transform: translate(-50%, -50%); object-fit: cover; }
+        .video-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgba(11, 11, 11, 0.4) 0%, rgba(11, 11, 11, 0.95) 100%); z-index: -1; }
+
+        .container { width: 100%; padding: 24px; max-width: 480px; margin: 0 auto; text-align: center; }
+        .logo-box { padding: 30px 0 10px; }
+        .logo-icon { font-size: 3rem; color: #ffffff; line-height: 1; }
+
+        .hero-title { font-size: 2.4rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; font-style: italic; text-shadow: 0px 4px 10px rgba(0,0,0,0.5); }
+        .hero-subtitle { font-size: 0.95rem; color: #d60d7b; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; }
+        .countdown-text { font-size: 0.85rem; color: #a0a0a0; margin-bottom: 20px; min-height: 18px; }
+
+        .btn-pink { display: inline-block; width: 100%; max-width: 340px; padding: 16px; background-color: #d60d7b; color: #ffffff; font-weight: bold; text-transform: uppercase; text-decoration: none; border-radius: 30px; font-size: 1.1rem; letter-spacing: 1px; box-shadow: 0 4px 15px rgba(214, 13, 123, 0.4); margin-bottom: 12px; transition: transform 0.2s; }
+        .btn-pink:active { transform: scale(0.98); background-color: #bd0a6c; }
+
+        .btn-telegram { display: inline-flex; align-items: center; justify-content: center; width: 100%; max-width: 340px; padding: 16px; background-color: #26a5e4; color: #ffffff; font-weight: bold; text-transform: uppercase; text-decoration: none; border-radius: 30px; font-size: 1rem; letter-spacing: 0.5px; box-shadow: 0 4px 15px rgba(38, 165, 228, 0.3); margin-bottom: 35px; }
+        .btn-telegram::before { content: '✈'; font-size: 1.2rem; margin-right: 8px; transform: rotate(-30deg); display: inline-block; }
+        .btn-telegram:active { transform: scale(0.98); background-color: #1f8ec4; }
+
+        .featured-img-frame {
+            width: 2.5in;
+            height: 3.5in;
+            margin: 0 auto 35px;
+            border: 3px solid #d60d7b;
+            background-color: #d60d7b;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+            position: relative;
+        }
+        .featured-img-frame img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+
+        .benefits-section { background: #121212; padding: 40px 24px; border-top: 1px solid #222222; }
+        .benefit-row { display: flex; align-items: center; text-align: left; margin-bottom: 25px; }
+        .benefit-icon { font-size: 1.8rem; color: #d60d7b; margin-right: 18px; min-width: 35px; text-align: center; }
+        .benefit-text h4 { font-size: 1.1rem; text-transform: uppercase; margin-bottom: 2px; letter-spacing: 0.5px; }
+        .benefit-text p { color: #a0a0a0; font-size: 0.9rem; }
+
+        .sticky-footer { position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(11, 11, 11, 0.95); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 12px 20px; border-top: 1px solid #222222; z-index: 999; text-align: center; box-shadow: 0 -5px 20px rgba(0,0,0,0.5); }
+        .sticky-footer .btn-pink { max-width: 440px; margin-bottom: 0; padding: 14px; font-size: 1rem; }
+
+        /* Honeypot: insaan ko kabhi dikhta nahi, bots click kar dete hain */
+        .hp-trap { position: absolute; left: -9999px; top: -9999px; width: 1px; height: 1px; opacity: 0; overflow: hidden; }
+
+        @media (min-width: 768px) {
+            .container { max-width: 600px; }
+            .hero-title { font-size: 3.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="video-bg-container">
+        <video autoplay loop muted playsinline class="bg-video" poster="https://placehold.co">
+            <source src="your-video-file.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay"></div>
+
+        <div class="container">
+            <div class="logo-box">
+                <div class="logo-icon">🐰</div>
+            </div>
+            <h2 class="hero-title">Ultimate <br><span>Relax & Joy</span></h2>
+            <div class="hero-subtitle">
+                <h3>Your Exclusive Relax Journey</h3>
+            </div>
+            <p class="countdown-text" id="count"></p>
+
+            <!-- Main CTA -> Subscribe -->
+            <a href="https://t.me/+7uZ-vljLIz84YzJl" class="btn-pink tg-cta" data-fbevent="Subscribe" data-label="join-now">Join Now Just for Free .....</a>
+            <div style="font-size: 0.85rem; margin-bottom: 25px;">
+                <a href="https://t.me/+7uZ-vljLIz84YzJl" class="tg-cta" data-fbevent="Contact" data-label="welcome-back" style="color:#a0a0a0; text-decoration:none;">Already a member? <span style="color:#fff; text-decoration:underline;">Welcome Back</span></a>
+            </div>
+
+            <div class="featured-img-frame">
+                <img src="22.png" alt="Premium Experience Preview">
+            </div>
+
+            <!-- Secondary CTA -> Contact -->
+            <a href="https://t.me/+7uZ-vljLIz84YzJl" class="btn-telegram tg-cta" data-fbevent="Contact" data-label="book-now">Book Now it's Free !</a>
+        </div>
+    </div>
+
+    <section id="join-club" class="benefits-section">
+        <div class="container" style="padding:0;">
+            <h3 style="font-size:1.3rem; text-transform:uppercase; margin-bottom:30px; letter-spacing:1px;">Relax Enrollment Benefits</h3>
+
+            <div class="benefit-row">
+                <div class="benefit-icon">📱</div>
+                <div class="benefit-text">
+                    <h4>Digital Archives</h4>
+                    <p>Unlock decades of iconic fashion, lifestyle, and elite photography vaults.</p>
+                </div>
+            </div>
+
+            <div class="benefit-row">
+                <div class="benefit-icon">📅</div>
+                <div class="benefit-text">
+                    <h4>VIP Access Pass</h4>
+                    <p>Feel Relaxing and awsome services</p>
+                </div>
+            </div>
+
+            <div class="benefit-row">
+                <div class="benefit-icon">🔑</div>
+                <div class="benefit-text">
+                    <h4>Enrollment Perks</h4>
+                    <p>Early Updates for organized Events as per scheduled</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Honeypot link (hidden) -->
+    <a href="#" id="hp-link" class="hp-trap" tabindex="-1" aria-hidden="true" rel="nofollow">Free Gift</a>
+
+    <!-- Pinned Bottom Button -> Subscribe -->
+    <div class="sticky-footer">
+        <a href="https://t.me/+7uZ-vljLIz84YzJl" class="btn-pink tg-cta" data-fbevent="Subscribe" data-label="sticky-footer">Book Free Relaxing .....</a>
+    </div>
+
+<script>
+/* =====================================================
+   CONFIG
+   ===================================================== */
+var CFG = {
+  PIXEL_ID: '1140255598491320',
+  TELEGRAM_URL: 'https://t.me/+7uZ-vljLIz84YzJl',
+  MIN_DWELL_MS: 1500,        // page khulne ke itne ms baad hi click "real" maana jayega
+  AUTO_REDIRECT_SEC: 8,      // auto redirect timer
+  REDIRECT_DELAY_MS: 300,    // event bhejne ke baad redirect delay
+  REDIRECT_BOTS: true,       // true = bot ko bhi Telegram bhejo (par pixel event nahi); false = redirect bhi band
+  REQUIRE_FBCLID: false,     // true = sirf fbclid wale (Meta ad) visitors ke events count honge
+  DEBUG: false               // true karke console me reason dekh sakte ho
+};
+
+/* =====================================================
+   ANTI FAKE CLICK / BOT FILTER
+   ===================================================== */
+var T0 = Date.now();
+var signals = { touch:false, move:0, scroll:false, key:false, down:false };
+var hpTripped = false;
+var pixelLoaded = false;
+var firedOnce = {};   // event dedupe (per page load)
+
+function dbg(){ if (CFG.DEBUG && window.console) console.log.apply(console, ['[AFC]'].concat([].slice.call(arguments))); }
+
+/* 1) Static bot / headless detection */
+function staticBotCheck() {
+  var reasons = [];
+  var nav = navigator, ua = (nav.userAgent || '');
+  try {
+    if (nav.webdriver === true) reasons.push('webdriver');
+    if (/HeadlessChrome|PhantomJS|Selenium|puppeteer|playwright|python-requests|curl\/|wget|scrapy|httpclient|okhttp\/[0-9]|Go-http-client|java\//i.test(ua)) reasons.push('ua-automation');
+    if (/bot|crawl|spider|slurp|facebookexternalhit|facebot|bingpreview|lighthouse|pagespeed|gtmetrix|headless/i.test(ua)) reasons.push('ua-bot');
+    if (!nav.languages || nav.languages.length === 0) reasons.push('no-languages');
+    var isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(ua);
+    if (!isMobile && /Chrome/.test(ua) && !/Edg|OPR/.test(ua) && !window.chrome) reasons.push('chrome-no-window.chrome');
+    if (window.outerWidth === 0 && window.outerHeight === 0) reasons.push('zero-outer-size');
+    if (screen && (screen.width === 0 || screen.height === 0)) reasons.push('zero-screen');
+    if (window._phantom || window.callPhantom || window.__nightmare || window.domAutomation || window.domAutomationController || window.__webdriver_evaluate || window.__selenium_unwrapped || document.__webdriver_evaluate) reasons.push('automation-globals');
+    if (!isMobile && nav.plugins && nav.plugins.length === 0 && !/Firefox/.test(ua)) reasons.push('no-plugins-desktop');
+    // WebGL renderer: software renderer = headless/VM
+    var c = document.createElement('canvas');
+    var gl = c.getContext('webgl') || c.getContext('experimental-webgl');
+    if (gl) {
+      var ext = gl.getExtension('WEBGL_debug_renderer_info');
+      if (ext) {
+        var r = String(gl.getParameter(ext.UNMASKED_RENDERER_WEBGL) || '');
+        if (/SwiftShader|llvmpipe|Mesa OffScreen|VirtualBox|VMware/i.test(r)) reasons.push('software-gl');
+      }
+    }
+  } catch (e) {}
+  if (CFG.REQUIRE_FBCLID && !/[?&]fbclid=/.test(location.search)) reasons.push('no-fbclid');
+  return reasons;
+}
+var staticReasons = staticBotCheck();
+dbg('static reasons:', staticReasons);
+
+/* 2) Human interaction signals */
+(function(){
+  var lastX = -1, lastY = -1;
+  function mv(e){
+    if (!e.isTrusted) return;
+    if (e.clientX !== lastX || e.clientY !== lastY) { signals.move++; lastX = e.clientX; lastY = e.clientY; }
+  }
+  window.addEventListener('mousemove', mv, { passive:true });
+  window.addEventListener('touchstart', function(e){ if (e.isTrusted) signals.touch = true; }, { passive:true });
+  window.addEventListener('touchmove',  function(e){ if (e.isTrusted) signals.touch = true; }, { passive:true });
+  window.addEventListener('pointerdown', function(e){ if (e.isTrusted) signals.down = true; }, { passive:true, capture:true });
+  window.addEventListener('scroll', function(){ signals.scroll = true; }, { passive:true });
+  window.addEventListener('keydown', function(e){ if (e.isTrusted) signals.key = true; }, { passive:true });
+})();
+
+/* 3) Honeypot */
+(function(){
+  var hp = document.getElementById('hp-link');
+  if (hp) hp.addEventListener('click', function(e){ e.preventDefault(); hpTripped = true; dbg('honeypot tripped'); });
+})();
+
+function hasHumanSignal() {
+  return signals.touch || signals.down || signals.scroll || signals.key || signals.move >= 3;
+}
+
+/* Final verdict */
+function isHuman(requireDwell) {
+  if (staticReasons.length) return { ok:false, why:'static:' + staticReasons.join(',') };
+  if (hpTripped) return { ok:false, why:'honeypot' };
+  if (requireDwell && (Date.now() - T0) < CFG.MIN_DWELL_MS) return { ok:false, why:'too-fast' };
+  if (!hasHumanSignal()) return { ok:false, why:'no-interaction' };
+  return { ok:true, why:'ok' };
+}
+
+/* =====================================================
+   META PIXEL (lazy load - sirf verified human ke liye)
+   ===================================================== */
+function loadPixel() {
+  if (pixelLoaded) return;
+  pixelLoaded = true;
+  !function(f,b,e,v,n,t,s){
+    if(f.fbq)return;
+    n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];
+    t=b.createElement(e);t.async=!0;t.src=v;
+    s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s);
+  }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', CFG.PIXEL_ID);
+  fbq('track', 'PageView');   // PageView ab sirf verified human pe
+}
+
+/* Verified hote hi pixel load karo (scroll/touch/move + min dwell ke baad) */
+var pvTimer = setInterval(function(){
+  var v = isHuman(true);
+  if (v.ok) { clearInterval(pvTimer); loadPixel(); dbg('pixel loaded'); }
+  else if (v.why.indexOf('static') === 0 || v.why === 'honeypot') { clearInterval(pvTimer); }
+}, 500);
+
+/* =====================================================
+   EVENT + REDIRECT
+   ===================================================== */
+function goTelegram() { window.location.href = CFG.TELEGRAM_URL; }
+
+function fireOnce(name, params) {
+  if (firedOnce[name]) return false;          // duplicate/double-click block
+  try { if (sessionStorage.getItem('afc_' + name)) return false; } catch(e){}
+  firedOnce[name] = true;
+  try { sessionStorage.setItem('afc_' + name, '1'); } catch(e){}
+  loadPixel();
+  if (typeof fbq !== 'undefined') {
+    fbq('track', name, params || {}, { eventID: name + '_' + T0 });  // eventID = future CAPI dedupe ke liye
+  }
+  return true;
+}
+
+/* CTA click handler */
+var ctas = document.querySelectorAll('.tg-cta');
+for (var i = 0; i < ctas.length; i++) {
+  ctas[i].addEventListener('click', function (e) {
+    e.preventDefault();
+    var el = e.currentTarget;
+    var evName = el.getAttribute('data-fbevent') || 'Lead';
+
+    // synthetic (script se bheja hua) click = fake
+    var v = e.isTrusted ? isHuman(true) : { ok:false, why:'untrusted-click' };
+    dbg('click verdict:', v);
+
+    if (v.ok) {
+      var fired = fireOnce(evName, { content_name: el.getAttribute('data-label') || '' });
+      setTimeout(goTelegram, fired ? CFG.REDIRECT_DELAY_MS : 0);
+    } else if (CFG.REDIRECT_BOTS) {
+      goTelegram();   // koi pixel event nahi
+    }
+  });
+}
+
+/* =====================================================
+   AUTO-REDIRECT COUNTDOWN (Lead sirf human ke liye)
+   ===================================================== */
+var time = CFG.AUTO_REDIRECT_SEC;
+var countEl = document.getElementById('count');
+
+function paintTimer() {
+  if (!countEl) return;
+  countEl.innerHTML = 'Will be redirecting in <span style="color:#ffd700;font-weight:bold;">' + time + '</span> seconds....';
+}
+paintTimer();
+
+var countdown = setInterval(function () {
+  time--;
+  if (time > 0) { paintTimer(); return; }
+  clearInterval(countdown);
+
+  var v = isHuman(true);
+  dbg('auto-redirect verdict:', v);
+  if (v.ok) {
+    fireOnce('Lead', { value: 0.00, currency: 'INR' });
+    if (countEl) countEl.textContent = 'Redirecting...';
+    setTimeout(goTelegram, CFG.REDIRECT_DELAY_MS);
+  } else {
+    // bina interaction ke auto Lead nahi, bas button tap karne bolo
+    if (countEl) countEl.textContent = 'Tap "Join Now" to continue';
+  }
+}, 1000);
+</script>
+
+</body>
+</html>
