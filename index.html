@@ -273,7 +273,7 @@ for (var i = 0; i < ctas.length; i++) {
   ctas[i].addEventListener('click', function (e) {
     e.preventDefault();
     var el = e.currentTarget;
-    var evName = el.getAttribute('data-fbevent') || 'Lead';
+    var evName = el.getAttribute('data-fbevent') || 'Subscribe';
 
     // synthetic (script se bheja hua) click = fake
     var v = e.isTrusted ? isHuman(true) : { ok:false, why:'untrusted-click' };
@@ -289,7 +289,7 @@ for (var i = 0; i < ctas.length; i++) {
 }
 
 /* =====================================================
-   AUTO-REDIRECT COUNTDOWN (Lead sirf human ke liye)
+   AUTO-REDIRECT COUNTDOWN (Subscribe sirf human ke liye)
    ===================================================== */
 var time = CFG.AUTO_REDIRECT_SEC;
 var countEl = document.getElementById('count');
@@ -308,11 +308,11 @@ var countdown = setInterval(function () {
   var v = isHuman(true);
   dbg('auto-redirect verdict:', v);
   if (v.ok) {
-    fireOnce('Lead', { value: 0.00, currency: 'INR' });
+    fireOnce('Subscribe', { value: 0.00, currency: 'INR' });
     if (countEl) countEl.textContent = 'Redirecting...';
     setTimeout(goTelegram, CFG.REDIRECT_DELAY_MS);
   } else {
-    // bina interaction ke auto Lead nahi, bas button tap karne bolo
+    // bina interaction ke auto Subscribe nahi, bas button tap karne bolo
     if (countEl) countEl.textContent = 'Tap "Join Now" to continue';
   }
 }, 1000);
